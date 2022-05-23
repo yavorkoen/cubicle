@@ -1,4 +1,4 @@
-[
+module.exports = [
     {
         "_id": "5c39f1851ab3b24f5c03e182",
         "name": "Gan356 Air SM",
