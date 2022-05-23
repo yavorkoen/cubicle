@@ -12,8 +12,24 @@ const getOne = (id) => {
     return cube;
 }
 
+const search = (search, from, to) => {
+    let foundCubes = Cube.cubes;
+    if(search) {
+        foundCubes = foundCubes.filter(x => x.name.toLowerCase().includes(search.toLowerCase()));
+    }
+    if(from > 0 && from < 7) {
+        foundCubes = foundCubes.filter(x => x.difficultyLevel >= from);
+    }
+    if(to > 0 && to >= from && to < 7) {
+        foundCubes = foundCubes.filter(x => x.difficultyLevel <= to);
+        
+    }
+    return foundCubes;
+}
+
 module.exports = {
     getAll,
     getOne,
     create,
+    search
 }
