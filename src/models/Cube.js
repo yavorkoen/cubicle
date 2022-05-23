@@ -5,9 +5,8 @@ class Cube {
 
     static #cubes = database;
 
-    constructor(_id, name, description, imageUrl, difficultyLevel) {
+    constructor(name, description, imageUrl, difficultyLevel) {
             this._id = uniqid();
-            this._id = _id;
             this.name = name;
             this.description = description;
             this.imageUrl = imageUrl;
