@@ -4,6 +4,7 @@
   "description": "cubicle backend service",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/yavorkoen/cubicle/issues"
   },
-  "homepage": "https://github.com/yavorkoen/cubicle#readme"
+  "homepage": "https://github.com/yavorkoen/cubicle#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
 }
