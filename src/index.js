@@ -1,15 +1,8 @@
 const express = require('express');
-const { engine } = require('express-handlebars');
-const path = require('path');
-
 
 const app = express();
 
-app.engine('hbs', engine({
-    extname: 'hbs'
-}));
-app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname + '/views'));
+require('./config/express.js')(app);
 
 app.get('/', (req, res) => {
     res.render('index');
