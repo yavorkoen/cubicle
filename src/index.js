@@ -5,6 +5,7 @@ const config = require('./config/config.js')[env];
 const app = express();
 
 require('./config/express.js')(app);
+require('./config/routes.js')(app);
 
 app.get('/', (req, res) => {
     res.render('index');
