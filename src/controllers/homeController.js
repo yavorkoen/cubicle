@@ -13,7 +13,12 @@ const about = (req, res) => {
     res.render('about');
 }
 
+const errorPage = (req, res) => {
+    res.render('404');
+}
+
 router.get('/', home);
 router.get('/about', about);
+router.get('*', errorPage)
 
 module.exports = router;
