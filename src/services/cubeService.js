@@ -22,22 +22,8 @@ const create = (name, description, imageUrl, difficultyLevel) => {
 }
 
 const search = (search, from, to) => {
-    Cube.find({}).lean()
-        .then((cubes) => {
-            let foundCubes = cubes;
-            if (search) {
-                foundCubes = foundCubes.filter(x => x.name.toLowerCase().includes(search.toLowerCase()));
-            }
-            if (from > 0 && from < 7) {
-                foundCubes = foundCubes.filter(x => x.difficultyLevel >= from);
-            }
-            if (to > 0 && to >= from && to < 7) {
-                foundCubes = foundCubes.filter(x => x.difficultyLevel <= to);
-                
-            }
-            // console.log(foundCubes)
-            return foundCubes;
-        })
+    return Cube.find({}).lean()
+        
 }
 
 module.exports = {
