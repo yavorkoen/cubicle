@@ -14,17 +14,15 @@ const accessorySchema = new mongoose.Schema({
     imageUrl: {
         type:String,
         required: true,
-        validation: {
-            validator: function(value) {
+        validate: {
+            validator: function (value) {
                 return /^https?:\/\//i.test(value);
             },
             message: 'Invalid image url!'
         }
-    },
-    difficutlyLevel: {
-        type: Number,
-        required: true,
-        min: 1,
-        max: 6
     }
-})
+});
+
+const Accessory = mongoose.model('Accessory', accessorySchema);
+
+module.exports = Accessory;
