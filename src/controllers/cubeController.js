@@ -6,14 +6,17 @@ const renderCreatePage = (req, res) => {
     res.render('create');
 }
 
-const createCube = (req, res) => {
-    
-    const {name, description, imageUrl, difficultyLevel} = req.body;
+const createCube = async (req, res) => {
+    let { name, description, imageUrl, difficultyLevel } = req.body;
 
-    cubeService.create(name, description, imageUrl, difficultyLevel);
+    try {
+        await cubeService.create(name, description, imageUrl, difficultyLevel);
+        res.redirect('/');
+    } catch (err) {
+        res.status(400).send(err.message);
+    }
 
-    res.redirect('/');
-    
+
 }
 
 const details = (req, res) => {

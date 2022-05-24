@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
 
-const cubeSchema = new mongoose.Schema({
-
+const accessorySchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -13,24 +12,19 @@ const cubeSchema = new mongoose.Schema({
         maxlength: 100
     },
     imageUrl: {
-        type: String,
+        type:String,
         required: true,
-        validate: {
-            validator: function (value) {
+        validation: {
+            validator: function(value) {
                 return /^https?:\/\//i.test(value);
             },
             message: 'Invalid image url!'
         }
     },
-    difficultyLevel: {
+    difficutlyLevel: {
         type: Number,
         required: true,
         min: 1,
         max: 6
     }
-});
-
-const Cube = mongoose.model('Cube', cubeSchema);
-
-
-module.exports = Cube;
+})
