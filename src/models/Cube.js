@@ -1,27 +1,36 @@
-const database = require('../config/database.js');
-const uniqid = require('uniqid');
+const mongoose = require('mongoose');
 
-class Cube {
 
-    static #cubes = database;
+const cubeSchema = new mongoose.Schema({
 
-    constructor(name, description, imageUrl, difficultyLevel) {
-            this._id = uniqid();
-            this.name = name;
-            this.description = description;
-            this.imageUrl = imageUrl;
-            this.difficultyLevel = difficultyLevel;
+    name: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true,
+        maxlength: 100
+    },
+    imageUrl: {
+        type: String,
+        required: true,
+        validate: {
+            validator: function (value) {
+                return /^https?:\/\//.test(value);
+            },
+            message: 'Invalid image url!'
+        }
+    },
+    difficultyLevel: {
+        type: Number,
+        required: true,
+        min: 1,
+        max: 6
     }
-    static get cubes() {
-        return Cube.#cubes.slice();
-    }
+});
 
-    static add(cube) {
-        Cube.#cubes.push(cube);
-    }
-
-
-}
+const Cube = mongoose.model('Cube', cubeSchema);
 
 
 module.exports = Cube;
