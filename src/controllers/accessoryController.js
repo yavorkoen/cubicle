@@ -18,5 +18,7 @@ router.get('/create', (req, res) => {
 })
 router.post('/create', createAccessory);
 
-
+router.get('/attach', (req, res) => {
+    res.render('./accessory/attach');
+})
 module.exports = router;
