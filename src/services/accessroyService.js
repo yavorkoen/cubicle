@@ -16,6 +16,7 @@ const create = (name, imageUrl, description) => {
 }
 const getRemaining = (accessoryIds) => {
     return Accessory.find({_id: {$nin: accessoryIds}}).lean();
+    //return Accessory.find().where('_id').nin(accessoriesIds).lean();
 }
 module.exports = {
     getAll,
