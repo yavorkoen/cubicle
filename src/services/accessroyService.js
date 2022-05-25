@@ -2,7 +2,7 @@ const Accessory = require('../models/Accessory.js');
 
 
 const getAll = () => Accessory.find().lean();
-const getOne = (id) => Accessory.findById(id);
+const getOne = (id) => Accessory.findById(id).lean();
 
 const create = (name, imageUrl, description) => {
 
