@@ -14,9 +14,12 @@ const create = (name, imageUrl, description) => {
 
     return accessory.save();
 }
-
+const getRemaining = (accessoryIds) => {
+    return Accessory.find({_id: {$nin: accessoryIds}}).lean();
+}
 module.exports = {
     getAll,
     getOne,
     create,
+    getRemaining
 }
