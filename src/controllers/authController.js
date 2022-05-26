@@ -18,9 +18,13 @@ const renderRegisterPage = (req, res) => {
 const register = async (req, res) => {
     let { username, password, repeatPassword } = req.body;
 
-    await authService.register(username, password)
-        
-    res.redirect('/');
+    try {
+        await authService.register(username, password)
+        res.redirect('/login');
+    } catch (err) {
+        res.status(400).send(err.message);
+    }
+
 }
 
 router.get('/login', renderLoginPage);
