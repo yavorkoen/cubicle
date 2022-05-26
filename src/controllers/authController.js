@@ -6,7 +6,9 @@ const renderLoginPage = (req, res) => {
 }
 
 const login = (req, res) => {
-    
+    console.log(req.body);
+
+    res.redirect('/login');
 }
 
 router.get('/login', renderLoginPage);
