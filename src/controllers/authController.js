@@ -1,8 +1,8 @@
 const router = require('express').Router();
-
+const authService = require('../services/authService.js');
 
 const renderLoginPage = (req, res) => {
-    res.render('auth/login', {layout: 'unsigned'});
+    res.render('auth/login', { layout: 'unsigned' });
 }
 
 const login = (req, res) => {
@@ -12,13 +12,15 @@ const login = (req, res) => {
 }
 
 const renderRegisterPage = (req, res) => {
-    res.render('auth/register', {layout: 'unsigned'});
+    res.render('auth/register', { layout: 'unsigned' });
 }
 
-const register = (req, res) => {
-    console.log(req.body);
+const register = async (req, res) => {
+    let { username, password, repeatPassword } = req.body;
 
-    res.redirect('/register');
+    await authService.register(username, password)
+        
+    res.redirect('/');
 }
 
 router.get('/login', renderLoginPage);
