@@ -5,10 +5,15 @@ const renderLoginPage = (req, res) => {
     res.render('auth/login', { layout: 'unsigned' });
 }
 
-const login = (req, res) => {
-    console.log(req.body);
+const login = async (req, res) => {
+    let { username, password } = req.body;
 
-    res.redirect('/login');
+    try {
+        await authService.login(username, password);
+        res.redirect('/');
+    } catch (err) {
+        res.status(400).send(err.message);
+    }
 }
 
 const renderRegisterPage = (req, res) => {
