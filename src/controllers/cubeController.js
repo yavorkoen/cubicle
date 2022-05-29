@@ -24,7 +24,7 @@ const details = async (req, res) => {
 };
 
 const renderEditPage = (req, res) => {
-    
+    console.log(req.user);
     res.render('cube/edit')
 };
 

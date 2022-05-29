@@ -2,9 +2,9 @@ const express = require('express');
 const { engine } = require('express-handlebars');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const  { auth } = require('../middlewares/authMiddleware.js');
 
-
-module.exports = (app) => {
+module.exports = function (app) {
     
     app.engine('hbs', engine({
         extname: 'hbs'
@@ -15,6 +15,6 @@ module.exports = (app) => {
     //TODO: Setup the body parser
     app.use(express.urlencoded({extended: true}));
     app.use(cookieParser());
-    app.use(express.static(path.join(__dirname, '../public')))
-
+    app.use(express.static(path.join(__dirname, '../public')));
+    app.use(auth);
 };

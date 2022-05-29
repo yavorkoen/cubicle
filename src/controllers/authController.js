@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const authService = require('../services/authService.js');
-// const { createToken } = require('../services/authService.js');
-
+const { TOKEN_COOKIE } = require('../constants.js')
 
 const renderRegisterPage = (req, res) => {
     res.render('auth/register', { layout: 'unsigned' });
@@ -22,7 +21,7 @@ const register = async (req, res) => {
 
 
 const renderLoginPage = (req, res) => {
-    res.render('auth/login', { layout: 'unsigned' });
+    res.render('auth/login');
 }
 
 const login = async (req, res) => {
@@ -30,12 +29,11 @@ const login = async (req, res) => {
 
     try {
         let user = await authService.login(username, password);
-        console.log(user);
         let token = await authService.createToken(user);
-        console.log(token);
-        res.cookie('app_token', token, {
+        res.cookie(TOKEN_COOKIE, token, {
             httpOnly: true,
         })
+        // console.log(req.cookies[TOKEN_COOKIE]);
         res.redirect('/');
     } catch (err) {
         res.status(400).send(err.message);
