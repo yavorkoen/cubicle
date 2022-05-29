@@ -25,6 +25,10 @@ const details = async (req, res) => {
 
 const renderEditPage = (req, res) => {
     console.log(req.user);
+    if(!req.user) {
+        res.status(401).redirect('/404')
+    }
+    
     res.render('cube/edit')
 };
 
