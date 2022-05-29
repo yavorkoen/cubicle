@@ -33,6 +33,9 @@ const login = async (req, res) => {
         console.log(user);
         let token = await authService.createToken(user);
         console.log(token);
+        res.cookie('app_token', token, {
+            httpOnly: true,
+        })
         res.redirect('/');
     } catch (err) {
         res.status(400).send(err.message);

@@ -2,6 +2,7 @@ const express = require('express');
 const env = process.env.NODE_ENV || 'development';
 const initDatabase = require('./config/database.js');
 const config = require('./config/config.js')[env];
+
 const app = express();
 
 require('./config/express.js')(app);
