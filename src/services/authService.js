@@ -5,9 +5,9 @@ const { jwtSign } = require('../utils/jwtUtils.js');
 const { SECRET } = require('../constants.js');
 
 
-exports.register = function (username, password) {
+exports.register = function (username, password, repeatPassword) {
 
-    return User.create({ username, password });
+    return User.create({ username, password, repeatPassword });
 
     //    return bcrypt.hash(password, 10)
     //         .then(hash => User.create({username, password: hash})); 

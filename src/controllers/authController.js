@@ -10,7 +10,7 @@ const register = async (req, res) => {
     let { username, password, repeatPassword } = req.body;
 
     try {
-        await authService.register(username, password)
+        await authService.register(username, password, repeatPassword)
         res.redirect('/login');
     } catch (err) {
         res.status(400).send(err.message);
