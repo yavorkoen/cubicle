@@ -3,7 +3,7 @@ const authService = require('../services/authService.js');
 const { TOKEN_COOKIE } = require('../constants.js')
 
 const renderRegisterPage = (req, res) => {
-    res.render('auth/register', { layout: 'unsigned' });
+    res.render('auth/register');
 }
 
 const register = async (req, res) => {
@@ -12,8 +12,9 @@ const register = async (req, res) => {
     try {
         await authService.register(username, password, repeatPassword)
         res.redirect('/login');
-    } catch (err) {
-        res.status(400).send(err.message);
+    } catch (error) {
+    
+        res.status(400).render('auth/register', { error: error.message })
     }
 
 }
